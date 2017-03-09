@@ -15,7 +15,7 @@ class PageViewModelTest(TestCase):
 class PageViewTest(TestCase):
     def test_index(self):
         resp = self.client.get('/')
-        self.assertEqual(resp.status_code, 200)
+        self.assertIn(resp.status_code, [200, 302])
 
 class DbEngine(TestCase):
     def setUp(self):
