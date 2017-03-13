@@ -51,11 +51,17 @@ WSGI_APPLICATION = 'hokimicms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-from . import database
+# from . import database
 
+# DATABASES = {
+#     'default': database.config()
+# }
+
+import dj_database_url
 DATABASES = {
-    'default': database.config()
+    'default': dj_database_url.config()
 }
+
 
 
 # Internationalization
