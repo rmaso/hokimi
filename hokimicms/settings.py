@@ -164,6 +164,7 @@ INSTALLED_APPS = (
     'djangocms_video',
     'hokimicms',
     'test',
+    'my_custom_social_addon',
 )
 
 LANGUAGES = (
