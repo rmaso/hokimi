@@ -89,6 +89,13 @@ STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'hokimicms', 'static'),
 )
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'aldryn_boilerplates.staticfile_finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
 SITE_ID = 1
 
 
@@ -99,21 +106,23 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.request',
-    'django.core.context_processors.media',
-    'django.core.context_processors.csrf',
-    'django.core.context_processors.tz',
-    'sekizai.context_processors.sekizai',
-    'django.core.context_processors.static',
-    'cms.context_processors.cms_settings'
+                'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.i18n',
+                'django.core.context_processors.debug',
+                'django.core.context_processors.request',
+                'django.core.context_processors.media',
+                'django.core.context_processors.csrf',
+                'django.core.context_processors.tz',
+                'sekizai.context_processors.sekizai',
+                'django.core.context_processors.static',
+                'cms.context_processors.cms_settings',
+                'aldryn_boilerplates.context_processors.boilerplate'
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    'django.template.loaders.eggs.Loader'
+                'aldryn_boilerplates.template_loaders.AppDirectoriesLoader',
+                'django.template.loaders.app_directories.Loader',
+                'django.template.loaders.eggs.Loader'
             ],
         },
     },
@@ -162,6 +171,12 @@ INSTALLED_APPS = (
     'djangocms_snippet',
     'djangocms_googlemap',
     'djangocms_video',
+    'aldryn_bootstrap3',
+    'absolute',
+    'aldryn_forms',
+    'aldryn_forms.contrib.email_notifications',
+    'captcha',
+    'emailit',
     'hokimicms',
     'test',
     'my_custom_social_addon',
@@ -200,12 +215,19 @@ CMS_TEMPLATES = (
     ## Customize this
     ('fullwidth.html', 'Fullwidth'),
     ('sidebar_left.html', 'Sidebar Left'),
-    ('sidebar_right.html', 'Sidebar Right')
+    ('sidebar_right.html', 'Sidebar Right'),
+    ('tpl_home.html', 'Home template')
 )
 
 CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
+
+DJANGOCMS_STYLE_CHOICES = ['container', 'content', 'teaser', 'feature-visual', 'feature-content', 'text-center', 'section-cyan', 'section-gray']
+
+ALDRYN_BOILERPLATE_NAME='bootstrap3'
+
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
 MIGRATION_MODULES = {
     
