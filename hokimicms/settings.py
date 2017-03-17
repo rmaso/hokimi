@@ -180,6 +180,7 @@ INSTALLED_APPS = (
     'hokimicms',
     'test',
     'my_custom_social_addon',
+    'torneos',
 )
 
 LANGUAGES = (
@@ -216,7 +217,8 @@ CMS_TEMPLATES = (
     ('fullwidth.html', 'Fullwidth'),
     ('sidebar_left.html', 'Sidebar Left'),
     ('sidebar_right.html', 'Sidebar Right'),
-    ('tpl_home.html', 'Home template')
+    ('tpl_home.html', 'Home template'),
+    ('torneo.html', 'Torneos'),
 )
 
 CMS_PERMISSION = True

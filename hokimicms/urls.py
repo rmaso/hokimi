@@ -23,6 +23,7 @@ urlpatterns += [url(r'^test$', index),
 				url(r'^test/health$', health),]
 				
 urlpatterns += i18n_patterns(
+    url(r'^torneos/', include('torneos.urls'), name="torneos"),
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     url(r'^', include('cms.urls')),
 )
