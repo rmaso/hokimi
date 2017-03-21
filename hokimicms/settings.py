@@ -116,7 +116,8 @@ TEMPLATES = [
                 'sekizai.context_processors.sekizai',
                 'django.core.context_processors.static',
                 'cms.context_processors.cms_settings',
-                'aldryn_boilerplates.context_processors.boilerplate'
+                'aldryn_boilerplates.context_processors.boilerplate',
+                'aldryn_snake.template_api.template_processor'
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
@@ -175,6 +176,7 @@ INSTALLED_APPS = (
     'absolute',
     'aldryn_forms',
     'aldryn_forms.contrib.email_notifications',
+    'aldryn_google_analytics',
     'captcha',
     'emailit',
     'hokimicms',
@@ -228,6 +230,10 @@ CMS_PLACEHOLDER_CONF = {}
 DJANGOCMS_STYLE_CHOICES = ['container', 'content', 'teaser', 'feature-visual', 'feature-content', 'text-center', 'section-cyan', 'section-gray']
 
 ALDRYN_BOILERPLATE_NAME='bootstrap3'
+
+GOOGLE_ANALYTICS_ID='UA-94087556-1'
+GOOGLE_ANALYTICS_USE_UNIVERSAL=False
+GOOGLE_ANALYTICS_TRACK_INDIVIDUALS=False
 
 EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
