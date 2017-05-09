@@ -181,7 +181,7 @@ INSTALLED_APPS = (
     'emailit',
     'hokimicms',
     # 'competition',
-    'django-crispy-forms',
+    'crispy_forms',
     'test',
     'my_custom_social_addon',
     'torneos',
