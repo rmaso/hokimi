@@ -176,7 +176,7 @@ INSTALLED_APPS = (
     'absolute',
     'aldryn_forms',
     'aldryn_forms.contrib.email_notifications',
-    'aldryn_google_analytics',
+    # 'aldryn_google_analytics',
     'captcha',
     'emailit',
     'hokimicms',

@@ -1,7 +1,6 @@
 aldryn-boilerplates==0.7.5
 aldryn-bootstrap3==1.2.1
 aldryn-forms==2.2.0
-aldryn-google-analytics==1.0.1
 aldryn-snake==0.0.2
 appdirs==1.4.3
 cmsplugin-filer==1.1.3
