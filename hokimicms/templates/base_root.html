@@ -32,6 +32,7 @@
     <script src="{% static 'js/libs/respond.min.js' %}"></script>
     <![endif]-->
     {% render_block "css" %}
+    {% block css %}{% endblock %}
     {% block extrahead %}{% endblock %}
     {{ ALDRYN_SNAKE.render_head }}
 </head>

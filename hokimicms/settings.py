@@ -180,6 +180,8 @@ INSTALLED_APPS = (
     'captcha',
     'emailit',
     'hokimicms',
+    # 'competition',
+    'crispy_forms',
     'test',
     'my_custom_social_addon',
     'torneos',
@@ -235,7 +237,8 @@ GOOGLE_ANALYTICS_ID='UA-94087556-1'
 GOOGLE_ANALYTICS_USE_UNIVERSAL=False
 GOOGLE_ANALYTICS_TRACK_INDIVIDUALS=False
 
-EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIGRATION_MODULES = {
     

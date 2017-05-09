@@ -1,0 +1,35 @@
+{% extends 'torneo.html' %}
+{% load staticfiles sekizai_tags %}
+
+{% block title %}Regístrate en Hokimi{% endblock %}
+
+{% block breadcrumb %}
+{% endblock breadcrumb %}
+
+{% block css %}
+  {% addtoblock "css" %}
+    <link href="{% static 'css/hokimi.css' %}" rel="stylesheet" type="text/css" />
+  {% endaddtoblock %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-md-offset-6">
+          <h1 class="text-center login-title">Crea tu cuenta de Hokimi</h1>
+            <div class="account-wall">
+                <form class="form-signin" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Crear cuenta</button>
+                <!--a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span-->
+                </form>
+            </div>
+            <div class="spacer spacer-md"></div>
+            <a href="{% url 'login' %}" class="text-center new-account">Inicia sesión</a>
+        </div>
+    </div>
+    <div class="spacer spacer-md"></div>
+</div>
+{% endblock %}

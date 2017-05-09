@@ -1,0 +1,44 @@
+{% extends "torneo.html" %}
+{% load crispy_forms_tags %}
+
+{% block breadcrumb %}
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="container">
+
+  <h2>Register to compete in {{ competition.title }}</h2>
+  {% url 'torneos:register_for competition.slug' as form_action %}
+  <form action="{{ form_action }}" class="form-horizontal" method="post">
+    {% csrf_token %}
+
+    {% if questions %}
+      <p>
+        Please complete the form below to complete your registration.
+      </p>
+    {% endif %}
+
+    <div class="well" id="formWell">
+      {% for question, form in questions %}
+        {{ form|crispy }}
+        {% if not form.last %}
+          <hr>
+        {% endif %}
+
+      {% empty %}
+      <p>
+        Huh. Looks like there's no registration form to fill
+        out. Lucky you!
+      </p>
+    </div>
+
+      <p> Press the button below to register. </p>
+    {% endfor %}
+    <div class="control-group">
+      <div class="controls">
+        <button type="submit" class="btn btn-primary">Register!</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

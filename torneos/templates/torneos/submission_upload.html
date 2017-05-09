@@ -1,0 +1,20 @@
+{% extends "torneo.html" %}
+{% load crispy_forms_tags %}
+
+{% block breadcrumb %}
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="container">
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+
+</div>
+{% endblock %}

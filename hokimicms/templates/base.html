@@ -41,7 +41,7 @@
                     {% show_menu 0 0 0 0 "includes/menu/navigation.html" %}
                     <li class="divider" role="presentation"><span class="sr-only">{% trans "Separator" %}</span></li>
                     {% show_menu_below_id "meta" 0 0 0 0 "includes/menu/navigation.html" %}
-                    {% language_chooser "includes/menu/langnav.html" "native" %}
+                    
                 </ul>
                 {% endwith %}
                 {% endrender_model_block %}
@@ -118,6 +118,7 @@
             <ul class="list-inline">
                 <li class="pull-right"><a href="#page-top" data-spy="scroll">{% trans "Back to top" %} <span class="fa fa-right fa-arrow-up"></span></a></li>
                 {% show_menu_below_id "footer" 0 0 100 100 "includes/menu/navigation.html" %}
+                {% language_chooser "includes/menu/langnav.html" "native" %}
             </ul>
             {% endrender_model_block %}
             {% static_placeholder "footer" %}

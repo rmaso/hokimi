@@ -1,0 +1,160 @@
+{% extends "torneo.html" %}
+{% load i18n staticfiles cms_tags menu_tags sekizai_tags %}
+
+{% block title %}{{object.title}}{% endblock title %}
+
+
+{% block breadcrumb %}
+<!-- start: breadcrumb 
+{# INFO: breadcrumb concept: http://getbootstrap.com/components/#breadcrumbs #}
+<nav class="navbar navbar-breadcrumb" role="navigation">
+    <h3 class="sr-only">{% trans "You are here" %}</h3>
+    <div class="container">
+        <ol class="breadcrumb">
+{% block extend_breadcrumb %}
+{% show_breadcrumb 0 "torneos/breadcrumb.html" 0 %}
+{% endblock extend_breadcrumb %}
+        </ol>
+    </div>
+</nav>
+<!-- end: breadcrumb -->
+{% endblock breadcrumb %}
+
+
+
+{% block content %}
+<div class="container">
+	<div class="spacer spacer-xs"></div>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="spacer spacer-xs"></div>
+			<img src="{{ MEDIA_URL }}{{ object.image.name }}" alt="" class="img-responsive"></img>
+		</div>
+		<div class="col-md-20">
+			<h2>{{object.title}}</h2>
+			<h4>{{object.short_description}}</h4>
+			<p>{{object.first_prize}} - 152 participantes - Un mes para finalizar</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-16">
+			<h4>Descripción</h4>
+			{{object.long_description}}
+			<hr>
+			<h4>Evaluación</h4>
+			{{object.evaluation}}
+			<hr>
+			<h4>Datos</h4>
+			<h5>Descripción de los datos</h5>
+			{{object.data}}
+			<h5>Descarga</h5>
+			<ul>
+				<li>sample_submission.csv.zip - 2.37 MB</li>
+				<li>train_ver2.csv.zip - 241.36 MB</li>
+				<li>test_ver2.csv.zip - 12.39</li>
+			</ul>
+		</div>
+		<div class="col-md-8">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Premios</h3>
+				</div>
+				<div class="panel-body">
+					{{object.prizes}}
+
+					{% if not user_registered %}
+					<div class="text-center">
+				      	<a href="{% url 'torneos:register_for' torneo_id=object.t_id slug=object.slug %}" 
+				      	class="btn btn-warning btn-lg cms-plugin cms-plugin-2292 fa fa-pencil-square-o" role="button"> ¡Participa!</a>
+				    </div>
+					{% endif %}				
+
+				</div>
+			</div>
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">Clasificación</h3>
+				</div>
+				<div class="panel-body">
+					<ol>
+						<li>idle_speculation</li>
+						<li>Tom Van de Wiele</li>
+						<li>Jack (Japan)</li>
+						<li>yoniko</li>
+						<li>Jared Turkewitz and BreakfastPirate</li>
+						<li>In Public Leaderboard We Trust</li>
+						<li>Evgeny Patekha</li>
+						<li>Alejo y Miro</li>
+					</ol>
+				</div>
+			</div>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Foros de discusión</h3>
+				</div>
+				<div class="panel-body">
+					<div class="content-box__content-section discussion-teaser__items">
+						<div class="teaser-list teaser-list--4-item-height">
+							<div class="block-link block-link--bordered">
+								<a class="block-link__anchor" href="/c/santander-product-recommendation/forums/t/26899/3rd-place-solution-with-code?forumMessageId=167502#post167502"></a>
+								<div class="discussion-teaser__item">
+									<div class="discussion-teaser__item-title">
+										<a title="3rd place solution (with code)" style="" href="/c/santander-product-recommendation/forums/t/26899/3rd-place-solution-with-code?forumMessageId=167502#post167502">3rd place solution (with code)</a>
+									</div>
+									<div class="discussion-teaser__item-details">
+										<span>12 replies</span> · <span title="Tue Mar 14 2017 11:19:38 GMT+0100 (CET)">3 days ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="block-link block-link--bordered">
+								<a class="block-link__anchor" href="/apryor6/santander-product-recommendation/detailed-cleaning-visualization-python/comments#166878"></a>
+								<div class="discussion-teaser__item">
+									<div class="discussion-teaser__item-title">
+										<a title="Detailed Cleaning/Visualization (Python)" style="" href="/apryor6/santander-product-recommendation/detailed-cleaning-visualization-python/comments#166878">Detailed Cleaning/Visualization (Python)</a>
+									</div>
+									<div class="discussion-teaser__item-details">
+										<span>66 replies</span> · <span title="Sat Mar 11 2017 19:28:07 GMT+0100 (CET)">6 days ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="block-link block-link--bordered">
+								<a class="block-link__anchor" href="/c/santander-product-recommendation/forums/t/24790/welcome?forumMessageId=164782#post164782"></a>
+								<div class="discussion-teaser__item">
+									<div class="discussion-teaser__item-title">
+										<a title="Welcome! " style="" href="/c/santander-product-recommendation/forums/t/24790/welcome?forumMessageId=164782#post164782">Welcome!</a>
+									</div>
+									<div class="discussion-teaser__item-details">
+										<span>29 replies</span> · <span title="Thu Mar 02 2017 12:07:17 GMT+0100 (CET)">15 days ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="block-link block-link--bordered">
+								<a class="block-link__anchor" href="/rahulgopal/santander-product-recommendation/recommender-system/comments#160703"></a>
+								<div class="discussion-teaser__item">
+									<div class="discussion-teaser__item-title">
+										<a title="Recommender system" style="" href="/rahulgopal/santander-product-recommendation/recommender-system/comments#160703">Recommender system</a>
+									</div>
+									<div class="discussion-teaser__item-details">
+										<span>0 replies</span> · <span title="Thu Feb 09 2017 06:48:33 GMT+0100 (CET)">a month ago</span>
+									</div>
+								</div>
+							</div>
+							<div class="block-link block-link--bordered">
+								<a class="block-link__anchor" href="/k0walski/santander-product-recommendation/santander-prodct-recommendation/comments#159154"></a>
+								<div class="discussion-teaser__item">
+									<div class="discussion-teaser__item-title">
+										<a title="Santander prodct recommendation" style="" href="/k0walski/santander-product-recommendation/santander-prodct-recommendation/comments#159154">Santander prodct recommendation</a>
+									</div>
+									<div class="discussion-teaser__item-details">
+										<span>4 replies</span> · <span title="Wed Feb 01 2017 04:37:29 GMT+0100 (CET)">2 months ago</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends "torneo.html" %}
+{% load i18n staticfiles cms_tags menu_tags sekizai_tags %}
+
+{% block title %}Torneos{% endblock title %}
+
+    {% block feature %}
+            <div class="feature-visual">
+                <img src="{% static 'img/visuals/feature-default.jpg' %}" alt="">
+            </div>
+            <div class="feature-content text-center">
+                <div class="spacer spacer-xs">&nbsp;</div>
+                <h1>Torneos</h1>
+            </div>
+    {% endblock feature %}
+
+
+{% block content %}
+<div class="container">
+{% if latest_list %}
+    {% for t in latest_list %}
+    	<div class="row">
+			<div class="col-md-3 icon-rounded">
+                <div class="spacer spacer-xs"></div>
+			    <img src="{{ MEDIA_URL }}{{ t.image.name }}" alt="" class="img-responsive"></img>
+			</div>
+			<div class="col-md-21">
+			    <h4><a href="{% url 'torneos:torneos_detail_slug' t.t_id t.slug %}">{{ t.title }}</a></h4>
+				<p>{{t.short_description}}
+				<br /><sub>{{t.first_prize}} · 152 participantes · <span style="color: #ff0000;">Un mes para finalizar</span></sub></p>
+			</div>
+		</div>
+    {% endfor %}
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+<div class="spacer spacer-xl">&nbsp;</div>
+</div>
+{% endblock content %}

@@ -10,6 +10,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
 
+from django.contrib.auth import views as auth_views
 from test.views import index, health
 
 admin.autodiscover()
@@ -23,7 +24,10 @@ urlpatterns += [url(r'^test$', index),
 				url(r'^test/health$', health),]
 				
 urlpatterns += i18n_patterns(
-    url(r'^torneos/', include('torneos.urls'), name="torneos"),
+#     url(r'^accounts/login/$', auth_views.login),
+    url(r'^', include('torneos.urls', namespace="torneos", app_name="torneos"), name="torneos"),
+    # url(r'^', include('competition.urls')),  # NOQA
+    url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     url(r'^', include('cms.urls')),
 )
