@@ -41,7 +41,25 @@
                     {% show_menu 0 0 0 0 "includes/menu/navigation.html" %}
                     <li class="divider" role="presentation"><span class="sr-only">{% trans "Separator" %}</span></li>
                     {% show_menu_below_id "meta" 0 0 0 0 "includes/menu/navigation.html" %}
-                    
+                    {% if user.is_authenticated %}
+                    <li class="child">
+                      <a class="dropdown-toggle" data-toggle="dropdown">
+
+<div class="Main-nav__account-button__avatar" style="background-image: url({% static "img/default-avatar.png" %});">
+<div class="Main-nav__account-button__badge"></div>
+</div>
+
+</a>
+                      <ul class="dropdown-menu">
+                        <li class="dropdown-header">Hi, {{user.get_username}}</li>
+                        <li class="divider"></li>
+                        <li><a href="#">Tu perfil</a></li>
+                        <li><a href="{% url 'torneos:profile' %}">Configuración</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'logout' %}?next=/">Salir</a></li>
+                      </ul>
+                    </li> 
+                    {% endif %}                   
                 </ul>
                 {% endwith %}
                 {% endrender_model_block %}
