@@ -73,3 +73,24 @@
     display: block;
     margin-top: 10px;
 }
+
+@media only screen and (min-width: 1024px) {
+    .col--delineated-lg {
+        border-left: 1px solid #E5E5E5;
+    }
+}
+
+.left-sidebar .title, .left-sidebar .nav-links a {
+    border-bottom: 1px solid #f5f5f5;
+    padding-left: 24px;
+}
+
+#account_settings .left-sidebar .nav-links a, #account_settings .left-sidebar .nav-links a:visited {
+    cursor: pointer;
+    display: flex;
+    font-weight: 500;
+    line-height: 4em;
+    min-height: 54px;
+    text-decoration: none;
+}
+

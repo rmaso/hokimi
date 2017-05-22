@@ -1,4 +1,3 @@
-from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
 from django.contrib.sites.shortcuts import get_current_site
@@ -6,13 +5,17 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
 
-from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 
 from ..tokens import account_activation_token
 from ..forms.profile_forms import SignUpForm
+
+
 
 # https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
 def signup(request):
@@ -55,3 +58,19 @@ def activate(request, uidb64, token):
         return redirect('pages-root')
     else:
         return render(request, 'account_activation_invalid.html')
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('torneos:change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'profiles/change_password.html', {
+        'form': form
+    })

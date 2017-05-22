@@ -45,18 +45,16 @@
                     <li class="child">
                       <a class="dropdown-toggle" data-toggle="dropdown">
 
-<div class="Main-nav__account-button__avatar" style="background-image: url({% static "img/default-avatar.png" %});">
-<div class="Main-nav__account-button__badge"></div>
-</div>
+<div class="Main-nav__account-button__avatar" style="background-image: url({% static "img/default-avatar.png" %});"></div>
 
 </a>
                       <ul class="dropdown-menu">
                         <li class="dropdown-header">Hi, {{user.get_username}}</li>
                         <li class="divider"></li>
-                        <li><a href="#">Tu perfil</a></li>
-                        <li><a href="{% url 'torneos:profile' %}">Configuración</a></li>
+                        <li><a href="#" style="text-align:left">Tu perfil</a></li>
+                        <li><a href="{% url 'torneos:profile' %}" style="text-align:left">Configuración</a></li>
                         <li class="divider"></li>
-                        <li><a href="{% url 'logout' %}?next=/">Salir</a></li>
+                        <li><a href="{% url 'logout' %}?next=/" style="text-align:left">Salir</a></li>
                       </ul>
                     </li> 
                     {% endif %}                   

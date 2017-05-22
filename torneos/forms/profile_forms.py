@@ -8,12 +8,16 @@ from ..models.profile_model import  Profile
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
+        first_name = forms.CharField(required=True)
+        last_name = forms.CharField(required=True)
+        email = forms.EmailField(label='Your email', required=True)
         fields = ('first_name', 'last_name', 'email')
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('bio', 'location')
+        bio = forms.CharField(widget=forms.Textarea)
+        fields = ('bio',)
 
 class SignUpForm(UserCreationForm):
 

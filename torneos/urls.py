@@ -8,6 +8,7 @@ from .views import profile_view
 app_name = "torneos"
 urlpatterns = [
 	url(r'^profile/$',  torneo_views.update_profile, name="profile"),
+    url(r'^password/$', profile_view.change_password, name='change_password'),
 	url(r'^signup/$', profile_view.signup, name='signup'),
 
     url(r'^account_activation_sent/$', profile_view.account_activation_sent, name='account_activation_sent'),

@@ -86,8 +86,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
+from machina import MACHINA_MAIN_STATIC_DIR
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'hokimicms', 'static'),
+    MACHINA_MAIN_STATIC_DIR,
 )
 
 STATICFILES_FINDERS = (
@@ -98,26 +101,31 @@ STATICFILES_FINDERS = (
 
 SITE_ID = 1
 
+from machina import MACHINA_MAIN_TEMPLATE_DIR
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'hokimicms', 'templates'),],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'hokimicms', 'templates'),
+            MACHINA_MAIN_TEMPLATE_DIR,
+        ],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.core.context_processors.i18n',
-                'django.core.context_processors.debug',
-                'django.core.context_processors.request',
-                'django.core.context_processors.media',
-                'django.core.context_processors.csrf',
-                'django.core.context_processors.tz',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.template.context_processors.media',
+                'django.template.context_processors.csrf',
+                'django.template.context_processors.tz',
                 'sekizai.context_processors.sekizai',
-                'django.core.context_processors.static',
+                'django.template.context_processors.static',
                 'cms.context_processors.cms_settings',
                 'aldryn_boilerplates.context_processors.boilerplate',
-                'aldryn_snake.template_api.template_processor'
+                'aldryn_snake.template_api.template_processor',
+                'machina.core.context_processors.metadata',
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
@@ -142,10 +150,13 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
-    'cms.middleware.language.LanguageCookieMiddleware'
+    'cms.middleware.language.LanguageCookieMiddleware',
+    'machina.apps.forum_permission.middleware.ForumPermissionMiddleware',
 )
 
-INSTALLED_APPS = (
+from machina import get_apps as get_machina_apps
+
+INSTALLED_APPS = [
     'djangocms_admin_style',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -185,7 +196,11 @@ INSTALLED_APPS = (
     'test',
     'my_custom_social_addon',
     'torneos',
-)
+    # Machina related apps:
+    'mptt',
+    'haystack',
+    'widget_tweaks',
+] + get_machina_apps()
 
 LANGUAGES = (
     ## Customize this
@@ -254,4 +269,33 @@ THUMBNAIL_PROCESSORS = (
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+HAYSTACK_CONNECTIONS = {
+  'default': {
+    'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+  },
+}
+
+CACHES = {
+  'default': {
+    'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+  },
+  'machina_attachments': {
+    'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+    'LOCATION': '/tmp',
+  }
+}
+
+MACHINA_DEFAULT_AUTHENTICATED_USER_FORUM_PERMISSIONS = [
+    'can_see_forum',
+    'can_read_forum',
+    'can_start_new_topics',
+    'can_reply_to_topics',
+    'can_edit_own_posts',
+    'can_post_without_approval',
+    'can_create_polls',
+    'can_vote_in_polls',
+    'can_download_file',
+]
+
 

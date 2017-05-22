@@ -13,6 +13,8 @@ from django.views.static import serve
 from django.contrib.auth import views as auth_views
 from test.views import index, health
 
+from machina.app import board
+
 admin.autodiscover()
 
 urlpatterns = [
@@ -30,7 +32,7 @@ urlpatterns += i18n_patterns(
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     url(r'^', include('cms.urls')),
-)
+) + [url(r'^forum/', include(board.urls)),]
 
 # This is only needed when using runserver.
 if settings.DEBUG:

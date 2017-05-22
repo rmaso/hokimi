@@ -3,6 +3,16 @@
 
 {% block title %}{% page_attribute "page_title" %}{% endblock title %}
 
+{% block css %}
+	{% addtoblock "css" %}
+		<link href="{% static 'css/hokimi.css' %}" rel="stylesheet" type="text/css" />
+	{% endaddtoblock %}
+{% endblock %}
+
+{% block breadcrumb %}
+{% endblock breadcrumb %}
+
+
 {% block feature %}
 <div class="spacer
      spacer-md
